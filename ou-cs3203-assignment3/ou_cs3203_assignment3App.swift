@@ -13,5 +13,5 @@ struct ou_cs3203_assignment3App: App {
         WindowGroup {
             ContentView()
         }
-    }
+    } //  main for swiftui
 }
