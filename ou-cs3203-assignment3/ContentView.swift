@@ -4,6 +4,7 @@ struct ContentView: View {
     @State private var numbersInput: String = ""
     @State private var sumResult: Int? = nil
     @State private var productResult: Int? = nil
+    @State private var reversedNumbers: [Int] = []
 
     var body: some View {
         VStack {
@@ -21,8 +22,8 @@ struct ContentView: View {
                 }
                 .disabled(numbersInput.isEmpty)
 
-                Button(action: calculateProduct) {
-                    Text("Calculate Product")
+                Button(action: calculateProductAndReverse) {
+                    Text("Calculate Product and Reverse")
                         .padding()
                 }
                 .disabled(numbersInput.isEmpty)
@@ -37,6 +38,11 @@ struct ContentView: View {
                 Text("Product: \(productResult)")
                     .padding()
             }
+
+            if !reversedNumbers.isEmpty {
+                Text("Reversed Numbers: \(reversedNumbers.map(String.init).joined(separator: ","))")
+                    .padding()
+            }
         }
     }
 
@@ -45,12 +51,20 @@ struct ContentView: View {
         let numbers = numberStrings.compactMap { Int($0) }
         let sum = numbers.reduce(0, +)
         sumResult = sum
+        reverseNumbers()
     }
 
-    func calculateProduct() {
+    func calculateProductAndReverse() {
         let numberStrings = numbersInput.split(separator: ",").map { String($0) }
         let numbers = numberStrings.compactMap { Int($0) }
         let product = numbers.reduce(1, *)
         productResult = product
+        reverseNumbers()
+    }
+
+    func reverseNumbers() {
+        let numberStrings = numbersInput.split(separator: ",").map { String($0) }
+        let numbers = numberStrings.compactMap { Int($0) }
+        reversedNumbers = numbers.reversed()
     }
 }
