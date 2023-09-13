@@ -59,12 +59,6 @@ struct ContentView: View {
         let numbers = numberStrings.compactMap { Int($0) }
         let product = numbers.reduce(1, *)
         productResult = product
-        reverseNumbers()
-    }
-
-    func reverseNumbers() {
-        let numberStrings = numbersInput.split(separator: ",").map { String($0) }
-        let numbers = numberStrings.compactMap { Int($0) }
-        reversedNumbers = numbers.reversed()
+    } // edit for part 10 
     }
 }
