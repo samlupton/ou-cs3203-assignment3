@@ -1,26 +1,34 @@
-//
-//  ContentView.swift
-//  ou-cs3203-assignment3
-//
-//  Created by Samuel Lupton on 9/13/23.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var numbersInput: String = ""
+    @State private var result: Int? = nil
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+            Text("Enter numbers separated by commas (e.g., 1,2,3):")
+                .padding()
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+            TextField("1,2,3", text: $numbersInput)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+
+            Button(action: calculateSum) {
+                Text("Calculate Sum")
+                    .padding()
+            }
+
+            if let result = result {
+                Text("Sum: \(result)")
+                    .padding()
+            }
+        }
+    }
+
+    func calculateSum() {
+        let numberStrings = numbersInput.split(separator: ",").map { String($0) }
+        let numbers = numberStrings.compactMap { Int($0) }
+        let sum = numbers.reduce(0, +)
+        result = sum
     }
 }
