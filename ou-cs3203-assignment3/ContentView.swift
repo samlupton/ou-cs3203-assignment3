@@ -42,7 +42,7 @@ struct ContentView: View {
             if !reversedNumbers.isEmpty {
                 Text("Reversed Numbers: \(reversedNumbers.map(String.init).joined(separator: ","))")
                     .padding()
-            }
+            } // button add for part 6
         }
     }
 
